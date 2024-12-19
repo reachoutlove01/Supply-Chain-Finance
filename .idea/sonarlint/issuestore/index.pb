@@ -9,3 +9,5 @@ M
 contracts/credit-scoring.clar,6/2/62addf62734c4f3e24dea6098d1c1fa5d3756b29
 L
 tests/credit-scoring.test.ts,6/7/67d4e4f0fce978d00deb20f77741cc2020960d07
+L
+contracts/invoice-token.clar,6/e/6e18fa725f82fb2869e3afb811db255652141647
