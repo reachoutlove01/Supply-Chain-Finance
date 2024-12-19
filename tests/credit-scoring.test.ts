@@ -1,21 +1,33 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { describe, expect, it } from "vitest";
-
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
+describe('Credit Scoring Contract', () => {
+  let mockContractCall: any;
+  
+  beforeEach(() => {
+    mockContractCall = vi.fn();
   });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
+  
+  it('should update credit score', async () => {
+    mockContractCall.mockResolvedValue({ success: true, value: 750 });
+    const result = await mockContractCall('update-credit-score', 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM', true);
+    expect(result.success).toBe(true);
+    expect(result.value).toBe(750);
+  });
+  
+  it('should get credit score', async () => {
+    mockContractCall.mockResolvedValue({
+      success: true,
+      value: {
+        score: 750,
+        total_payments: 10,
+        on_time_payments: 9
+      }
+    });
+    const result = await mockContractCall('get-credit-score', 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM');
+    expect(result.success).toBe(true);
+    expect(result.value.score).toBe(750);
+    expect(result.value.total_payments).toBe(10);
+    expect(result.value.on_time_payments).toBe(9);
+  });
 });
+

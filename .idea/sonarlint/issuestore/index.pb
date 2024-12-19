@@ -7,3 +7,5 @@ O
 tests/automated-payment.test.ts,6/0/6098970dd95bc29603ad27decf55b0345e84e6bb
 M
 contracts/credit-scoring.clar,6/2/62addf62734c4f3e24dea6098d1c1fa5d3756b29
+L
+tests/credit-scoring.test.ts,6/7/67d4e4f0fce978d00deb20f77741cc2020960d07
